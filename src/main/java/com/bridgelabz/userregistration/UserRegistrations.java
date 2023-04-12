@@ -11,7 +11,7 @@ public class UserRegistrations {
 		System.out.println("Enter password: ");
 		String password = scanner.nextLine();
 
-		String regex = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(password);
 		boolean result = matcher.matches();
@@ -20,8 +20,8 @@ public class UserRegistrations {
 			System.out.println("Password is valid.");
 		} else {
 			System.out.println("Password is not valid.");
-			System.out.println(
-					"Password must contain minimum 8 characters, at least 1 uppercase letter, and at least 1 numeric digit.");
+			System.out.println("Password must contain minimum 8 characters, at least 1 uppercase letter, "
+					+ "at least 1 numeric digit, and exactly 1 special character (@#$%^&+=).");
 		}
 
 		scanner.close();
