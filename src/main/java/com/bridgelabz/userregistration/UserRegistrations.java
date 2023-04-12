@@ -8,7 +8,7 @@ public class UserRegistrations {
 
 	public static void main(String[] args) {
 
-		String passwordRegex = ".{8,}";
+		String passwordRegex = "^(?=.*[A-Z]).{8,}$";
 		System.out.println("Enter the password: ");
 		Scanner sc = new Scanner(System.in);
 		String password = sc.nextLine();
