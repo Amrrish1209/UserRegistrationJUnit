@@ -8,16 +8,13 @@ public class UserRegistrations {
 
 	public static void main(String[] args) {
 
-		// ^->beginning of the string,A-Z->first character should be upper
-		// case,a-zA-Z->any alphabetical character,{2,}->max of 3 character,$->end of
-		// the string
-		String lastNameRegex = "^[A-Z][a-zA-Z]{2,}$";
-		System.out.println("Enter the LastName: ");
+		String emailRegex = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,}){1,2}$";
+		System.out.println("Enter the email: ");
 		Scanner sc = new Scanner(System.in);
-		String lastName = sc.nextLine();
+		String email = sc.nextLine();
 
-		Pattern pattern = Pattern.compile(lastNameRegex);
-		Matcher matcher = pattern.matcher(lastName);
+		Pattern pattern = Pattern.compile(emailRegex);
+		Matcher matcher = pattern.matcher(email);
 		boolean result = matcher.matches();
 
 		if (result) {
