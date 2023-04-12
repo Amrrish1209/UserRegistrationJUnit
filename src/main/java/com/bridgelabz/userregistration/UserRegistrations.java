@@ -8,23 +8,21 @@ public class UserRegistrations {
 
 	public static void main(String[] args) {
 
-		// ^->beginning of string,[0-9]{2}->exactly two numeric
-		// number,[0-9][10]->exactly ten numeric numbers,$->end of string
-		String mobileRegex = "^[0-9]{2} [0-9]{10}$";
-
-		System.out.println("Enter the Mobile number: ");
+		String passwordRegex = ".{8,}";
+		System.out.println("Enter the password: ");
 		Scanner sc = new Scanner(System.in);
-		String mobileNumber = sc.nextLine();
+		String password = sc.nextLine();
 
-		Pattern pattern = Pattern.compile(mobileRegex);
-		Matcher matcher = pattern.matcher(mobileNumber);
+		Pattern pattern = Pattern.compile(passwordRegex);
+		Matcher matcher = pattern.matcher(password);
 		boolean result = matcher.matches();
 
 		if (result) {
-			System.out.println("Valid mobile number");
+			System.out.println("Pattern Match");
 		} else {
-			System.out.println("Invalid mobile number");
+			System.out.println("Pattern not Match");
 		}
+
 		sc.close();
 	}
 }
