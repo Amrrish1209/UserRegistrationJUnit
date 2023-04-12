@@ -7,23 +7,21 @@ import java.util.regex.Pattern;
 public class UserRegistrations {
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter password: ");
-		String password = scanner.nextLine();
 
-		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(password);
+		String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+		System.out.println("Enter the email: ");
+		Scanner sc = new Scanner(System.in);
+		String email = sc.nextLine();
+
+		Pattern pattern = Pattern.compile(emailRegex);
+		Matcher matcher = pattern.matcher(email);
 		boolean result = matcher.matches();
 
 		if (result) {
-			System.out.println("Password is valid.");
+			System.out.println("Pattern Match");
 		} else {
-			System.out.println("Password is not valid.");
-			System.out.println("Password must contain minimum 8 characters, at least 1 uppercase letter, "
-					+ "at least 1 numeric digit, and exactly 1 special character (@#$%^&+=).");
+			System.out.println("Pattern not Match");
 		}
-
-		scanner.close();
+		sc.close();
 	}
 }
