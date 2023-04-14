@@ -1,67 +1,18 @@
 package com.bridgelabz.userregistration;
 
-import java.util.regex.Matcher;
+import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public class UserRegistrations {
 
-	public boolean validateFirstName(String firstName) throws UserRegistrationException {
-		String regex = "^[A-Z][a-zA-Z]{2,}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(firstName);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_FIRST_NAME,
-					"Invalid first name");
-		}
-	}
+	private static final String NAME_PATTERN = "^[A-Z][a-zA-Z]{2,}$";
+	private static final String EMAIL_PATTERN = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})*$";
+	private static final String MOBILE_PATTERN = "^\\d{2} [1-9]\\d{9}$";
+	private static final String PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
 
-	public boolean validateLastName(String lastName) throws UserRegistrationException {
-		String regex = "^[A-Z][a-zA-Z]{2,}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(lastName);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_LAST_NAME,
-					"Invalid last name");
-		}
-	}
-
-	public boolean validateEmail(String email) throws UserRegistrationException {
-		String regex = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2,3})*$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(email);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_EMAIL,
-					"Invalid email address");
-		}
-	}
-
-	public boolean validateMobile(String mobile) throws UserRegistrationException {
-		String regex = "^\\d{2} [1-9]\\d{9}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(mobile);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_MOBILE_NUMBER,
-					"Invalid mobile number");
-		}
-	}
-
-	public boolean validatePassword(String password) throws UserRegistrationException {
-		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(password);
-		if (matcher.matches()) {
-			return true;
-		} else {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.INVALID_PASSWORD,
-					"Invalid password");
-		}
-	}
+	public Predicate<String> validateFirstName = firstName -> Pattern.compile(NAME_PATTERN).matcher(firstName).matches();
+	public Predicate<String> validateLastName = lastName -> Pattern.compile(NAME_PATTERN).matcher(lastName).matches();
+	public Predicate<String> validateEmail = email -> Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
+	public Predicate<String> validateMobile = mobile -> Pattern.compile(MOBILE_PATTERN).matcher(mobile).matches();
+	public Predicate<String> validatePassword = password -> Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
 }

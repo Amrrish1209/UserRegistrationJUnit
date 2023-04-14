@@ -1,112 +1,61 @@
 package com.bridgelabz.userregistration;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class UserRegistrationTest {
 
+	UserRegistrations validator = new UserRegistrations();
+
 	@Test
 	public void givenFirstName_WhenValid_ShouldReturnTrue() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			boolean result = validator.validateFirstName("John");
-			assertTrue(result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		assertTrue(validator.validateFirstName.test("John"));
 	}
 
 	@Test
-	public void givenFirstName_WhenShort_ShouldThrowException() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			validator.validateFirstName("J");
-		} catch (UserRegistrationException e) {
-			assertEquals(UserRegistrationException.ExceptionType.INVALID_FIRST_NAME, e.type);
-		}
+	public void givenFirstName_WhenShort_ShouldReturnFalse() {
+		assertFalse(validator.validateFirstName.test("J"));
 	}
 
 	@Test
 	public void givenLastName_WhenValid_ShouldReturnTrue() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			boolean result = validator.validateLastName("Doe");
-			assertTrue(result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		assertTrue(validator.validateLastName.test("Doe"));
 	}
 
 	@Test
-	public void givenLastName_WhenShort_ShouldThrowException() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			validator.validateLastName("D");
-		} catch (UserRegistrationException e) {
-			assertEquals(UserRegistrationException.ExceptionType.INVALID_LAST_NAME, e.type);
-		}
+	public void givenLastName_WhenShort_ShouldReturnFalse() {
+		assertFalse(validator.validateLastName.test("D"));
 	}
 
 	@Test
 	public void givenEmail_WhenValid_ShouldReturnTrue() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			boolean result = validator.validateEmail("john.doe@gmail.com");
-			assertTrue(result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		assertTrue(validator.validateEmail.test("john.doe@gmail.com"));
 	}
 
 	@Test
-	public void givenEmail_WhenNotValid_ShouldThrowException() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			validator.validateEmail("johndoe.gmail.com");
-		} catch (UserRegistrationException e) {
-			assertEquals(UserRegistrationException.ExceptionType.INVALID_EMAIL, e.type);
-		}
+	public void givenEmail_WhenNotValid_ShouldReturnFalse() {
+		assertFalse(validator.validateEmail.test("johndoe.gmail.com"));
 	}
 
 	@Test
 	public void givenMobileNumber_WhenValid_ShouldReturnTrue() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			boolean result = validator.validateMobile("91 9876543210");
-			assertTrue(result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		assertTrue(validator.validateMobile.test("91 9876543210"));
 	}
 
 	@Test
-	public void givenMobileNumber_WhenNotValid_ShouldThrowException() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			validator.validateMobile("09876543210");
-		} catch (UserRegistrationException e) {
-			assertEquals(UserRegistrationException.ExceptionType.INVALID_MOBILE_NUMBER, e.type);
-		}
+	public void givenMobileNumber_WhenNotValid_ShouldReturnFalse() {
+		assertFalse(validator.validateMobile.test("09876543210"));
 	}
 
 	@Test
 	public void givenPassword_WhenValid_ShouldReturnTrue() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			boolean result = validator.validatePassword("Passw0rd@");
-			assertTrue(result);
-		} catch (UserRegistrationException e) {
-			e.printStackTrace();
-		}
+		assertTrue(validator.validatePassword.test("Passw0rd@"));
 	}
 
 	@Test
-	public void givenPassword_WhenNotValid_ShouldThrowException() {
-		UserRegistrations validator = new UserRegistrations();
-		try {
-			validator.validatePassword("password");
-		} catch (UserRegistrationException e) {
-			assertEquals(UserRegistrationException.ExceptionType.INVALID_PASSWORD, e.type);
-		}
+	public void givenPassword_WhenNotValid_ShouldReturnFalse() {
+		assertFalse(validator.validatePassword.test("password"));
 	}
 }
